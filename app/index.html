@@ -1,12 +1,184 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Image Size Calculator</title>
+    <title>Let's Play!</title>
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+      $(document).ready(function () {
+        //console.log('jquery loaded');
+      });
+      </script>
+    <style>
+      body {
+        background: #555;
+      }
+      h1 {
+        color: #8BF4FF;
+        font-size: 48pt;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        color: #8BF4FF;
+        font-style: italic;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+/*
+      h1.entry-title {
+        z-index: 1001;
+      }*/
+
+      #loader-wrapper {
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+      }
+
+      #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        margin: -50px 0 0 -50px;
+        border: 3px solid transparent;
+        /*border-top-color: #3498db;*/
+        border-top-color: #8BF4FF;
+        border-radius: 50%;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        z-index: 1001;
+      }
+
+      #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border: 3px solid transparent;
+        /*border-top-color: #e74c3c;*/
+        border-top-color: #68F1FF;
+        border-radius: 50%;
+        -webkit-animation: spin 3s linear infinite;
+        animation: spin 3s linear infinite;
+      }
+
+      #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border: 3px solid transparent;
+        /*border-top-color: #f9c922;*/
+        border-top-color: #00E6FF;
+        border-radius: 50%;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      #loader-wrapper .loader-section {
+        position: fixed;
+        top: 0;
+        width: 51%;
+        height: 100%;
+        background: #222;
+        z-index: 1000;
+      }
+
+      #loader-wrapper .loader-section.section-left {
+        left: 0;
+      }
+
+      #loader-wrapper .loader-section.section-right {
+        right: 0;
+      }
+
+      .loaded #loader-wrapper .loader-section.section-left {
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
+      }
+
+      .loaded #loader-wrapper .loader-section.section-right {
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        transform: translateX(100%);
+      }
+
+      .loader #loader {
+        opacity: 0;
+      }
+
+      .loaded #loader {
+        visibility: hidden;
+      }
+
+      #content {
+        margin: 0 auto;
+        padding-bottom: 50px;
+        width: 80%;
+        max-width: 978px;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <app></app>
+
+      <!-- <header class="entry-header">
+        <h1 class="entry-title">Loading...</h1>
+      </header> -->
+
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+      </div>
+
+      <div id="content">
+        <app></app>
+      </div>
     </div>
     <script>
       require("zone.js");

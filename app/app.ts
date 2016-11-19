@@ -9,7 +9,6 @@ import {ItemViewerComponent} from './items/item-viewer.component'
   selector: 'app',
   template: `
     <champion-select></champion-select>
-    <item-viewer></item-viewer>
   `
 })
 
