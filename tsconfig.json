@@ -9,7 +9,6 @@
     "sourceMap": true
   },
   "include": [
-    "app/**/*.ts",
-    "app/item/*.ts"
+    "app/**/*.ts"
   ]
 }

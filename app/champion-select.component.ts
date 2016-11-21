@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-
-import {ElementRef, Renderer} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
+import { ElementRef, Renderer } from '@angular/core';
 
 import { ChampionService } from './champion.service'
 import { ChampionImage } from './champion.models'
@@ -8,25 +7,46 @@ import { ChampionImage } from './champion.models'
 @Component({
   selector: 'champion-select',
   template: `
-    <h1>Champion Select</h1>
-    <h2>{{title}}</h2>
-    <div id="champions">
-      <div class="champion" *ngFor="let championImage of championImages" (click)='championClicked($event, championImage.id)'>
-        <img [src]="championImage.full" width="64px" />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Champion Select</h1>
+          <h2>{{title}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="team" class="">
+            <div class="teamMember" *ngFor="let teamMember of team" (click)='removeTeamMember($event, teamMember.id)'>
+              <img [src]="teamMember.splash" width="96px" />
+              <!-- todo - hover name {{teamMember.name}} {{teamMember.title}} -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="champions" class="">
+            <div class="champion" *ngFor="let championImage of championImages" (click)='championClicked($event, championImage.id)'>
+              <img [src]="championImage.full" width="64px" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `,
-  styles: ['#champion { text-align: center;}','.champion {display: inline-block; padding: 10px; }', '.champion:hover { cursor: hand;}'],
+  styleUrls: ['css/main.css', 'css/champion-select.css'],
   providers: [ChampionService]
 })
 
 export class ChampionSelectComponent implements OnInit {
-  title = 'Select your hero:';
+  title = 'Build your team';
   champions: any[];
   championImages: ChampionImage[];
   selectedChampion: ChampionImage;
+  team = [];
 
-  constructor(private championService: ChampionService, private elementRef: ElementRef, private rd: Renderer) {}
+  constructor(private championService: ChampionService, private elementRef: ElementRef, private rd: Renderer, private cdr:ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     //console.log('ngAfterViewInit');
@@ -38,14 +58,39 @@ export class ChampionSelectComponent implements OnInit {
   }
 
   championClicked(event:MouseEvent, championId:number): boolean {
-    var target = event.target || event.srcElement || event.currentTarget;
-    console.log(championId);
+    let target = event.target || event.srcElement || event.currentTarget;
     let selectedChampionId = championId;
     this.selectedChampion = this.championImages.filter(function(o) {
       return o.id === selectedChampionId;
     })[0];  // return first match; should only be one
 
-    console.log(this.selectedChampion);
+    // add selection to team
+    if(this.team.length < 4) {
+      // play 'team full' sound
+      var audio = new Audio();
+      audio.src = './sounds/coin2.wav';
+      audio.load();
+      audio.play();
+      this.team.push(this.selectedChampion);
+      this.cdr.detectChanges();
+    } else {
+      // play selection sound
+      var audio = new Audio();
+      audio.src = './sounds/coin2.wav';
+      audio.load();
+      audio.play();
+    }
+    
+    return true;
+  }
+
+  removeTeamMember(event:MouseEvent, championId:number): boolean {
+    let target = event.target || event.srcElement || event.currentTarget;
+    var index = this.team.map(function(el) {
+      return el.id;
+    }).indexOf(championId);
+    this.team.splice(index, 1);
+    this.cdr.detectChanges();
     return true;
   }
 

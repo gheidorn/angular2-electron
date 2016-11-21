@@ -58,7 +58,7 @@ export class ChampionService {
       .then(response => {
         let championImages = [];
         let data = response.json().data;
-        
+
         // map response to Location[]
         for (let key of Object.keys(data)) {
           let championImage = {
@@ -66,13 +66,15 @@ export class ChampionService {
             id: data[key].id,
             title: data[key].title,
             full: "http://ddragon.leagueoflegends.com/cdn/6.22.1/img/champion/" + data[key].image.full,
+            splash: "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/" + data[key].key + '_0.jpg',
             sprite: data[key].image.sprite,
             group: data[key].image.group,
             key: data[key].key
           };
           championImages.push(championImage);
         }
-
+        console.log(championImages);
+        // http://ddragon.leagueoflegends.com/cdn/img/champion/loading/
         return championImages;
       })
       .catch(function(error) {
