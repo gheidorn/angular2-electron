@@ -33,10 +33,7 @@ function createWindow() {
   // gameWindow.loadURL(`file://${__dirname}/game/game.html`);
 
   ipcMain.on('toggle-game', function () {
-    console.log('ipc message received!!!');
-
-    win.loadURL(`file://${__dirname}/game/game.html`);
-
+    win.loadURL(`file://${__dirname}/game.html`);
     // if (gameWindow.isVisible())
     //   gameWindow.hide()
     // else

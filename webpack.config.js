@@ -12,7 +12,8 @@ module.exports = {
       'reflect-metadata',
       '@angular/core'
     ],
-    'app': './app/boot'
+    'app': './app/boot',
+    'game': './app/game/boot'
   },
 
   output: {
