@@ -73,8 +73,6 @@ export class ChampionService {
           };
           championImages.push(championImage);
         }
-        console.log(championImages);
-        // http://ddragon.leagueoflegends.com/cdn/img/champion/loading/
         return championImages;
       })
       .catch(function(error) {

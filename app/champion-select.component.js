@@ -25,6 +25,11 @@ let ChampionSelectComponent = class ChampionSelectComponent {
     ngOnInit() {
         this.getChampionImages();
     }
+    startGame(event) {
+        electron.ipcRenderer.send('toggle-game');
+        console.log('message sent');
+        return true;
+    }
     championClicked(event, championId) {
         let target = event.target || event.srcElement || event.currentTarget;
         let selectedChampionId = championId;
@@ -107,6 +112,7 @@ ChampionSelectComponent = __decorate([
         <div class="col-md-12">
           <h1>Champion Select</h1>
           <h2>{{title}}</h2>
+          <button class="button" (click)='startGame($event)'>Start Game</button>
         </div>
       </div>
       <div class="row">

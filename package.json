@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "bootstrap": "^3.3.7",
-    "electron-prebuilt": "^1.2.0",
+    "electron-prebuilt": "^1.3.9",
     "es6-shim": "^0.35.0",
     "ts-loader": "^0.8.2",
     "typings": "^0.8.1",
@@ -35,6 +35,7 @@
     "@angular/upgrade": "~2.2.0",
     "angular-in-memory-web-api": "~0.1.15",
     "core-js": "^2.4.1",
+    "electron-prebuilt": "^1.3.9",
     "node-aplay": "^1.0.3",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",

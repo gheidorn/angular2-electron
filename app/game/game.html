@@ -1,21 +1,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Let's Play!</title>
+    <title>Game Overview</title>
     <!-- Insert this line above script imports  -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-    <script>
-      var electron = require('electron');
-    </script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script>
       $(document).ready(function () {
         //console.log('jquery loaded');
       });
       </script>
-
   </head>
   <body>
     <div class="container">
@@ -31,14 +27,14 @@
       </div>
 
       <div id="content">
-        <app></app>
+        <game></game>
       </div>
     </div>
     <script>
       require("zone.js");
     </script>
-    <script src="../build/common.js"></script>
-    <script src="../build/angular2.js"></script>
-    <script src="../build/app.js"></script>
+    <script src="../../build/common.js"></script>
+    <script src="../../build/angular2.js"></script>
+    <script src="../../build/app.js"></script>
   </body>
 </html>

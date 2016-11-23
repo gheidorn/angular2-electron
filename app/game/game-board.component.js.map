@@ -1,0 +1,1 @@
+{"version":3,"file":"game-board.component.js","sourceRoot":"","sources":["game-board.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,wCAAoE;AAkBpE,yBAAA;IACE,QAAQ;IAER,CAAC;CACF,CAAA;AAJD;IAfC,gBAAS,CAAC;QACT,QAAQ,EAAE,YAAY;QACtB,QAAQ,EAAE;;;;;;;;GAQT;QACD,SAAS,EAAE,CAAC,cAAc,EAAE,yBAAyB,CAAC;QACtD,SAAS,EAAE,EAAE;KACd,CAAC;;sBAMD;AAJY,6BAAA,kBAAkB,CAAA"}

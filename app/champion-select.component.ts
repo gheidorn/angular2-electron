@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 import { ElementRef, Renderer } from '@angular/core';
+declare var electron: any;
 
 import { ChampionService } from './champion.service'
 import { ChampionImage } from './champion.models'
@@ -12,6 +13,7 @@ import { ChampionImage } from './champion.models'
         <div class="col-md-12">
           <h1>Champion Select</h1>
           <h2>{{title}}</h2>
+          <button class="button" (click)='startGame($event)'>Start Game</button>
         </div>
       </div>
       <div class="row">
@@ -57,6 +59,12 @@ export class ChampionSelectComponent implements OnInit {
     this.getChampionImages();
   }
 
+  startGame(event:MouseEvent): boolean {
+    electron.ipcRenderer.send('toggle-game');
+    console.log('message sent');
+    return true;
+  }
+
   championClicked(event:MouseEvent, championId:number): boolean {
     let target = event.target || event.srcElement || event.currentTarget;
     let selectedChampionId = championId;
@@ -80,7 +88,7 @@ export class ChampionSelectComponent implements OnInit {
       audio.load();
       audio.play();
     }
-    
+
     return true;
   }
 

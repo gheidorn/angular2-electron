@@ -1,8 +1,7 @@
 const electron = require('electron');
+
 // Module to control application life.
-const {app} = electron;
-// Module to create native browser window.
-const {BrowserWindow} = electron;
+const {app, BrowserWindow, ipcMain} = electron;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -25,6 +24,24 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  // var gameWindow = new BrowserWindow({
+  //   width: 400,
+  //   height: 400,
+  //   show: false
+  // })
+  // gameWindow.loadURL(`file://${__dirname}/game/game.html`);
+
+  ipcMain.on('toggle-game', function () {
+    console.log('ipc message received!!!');
+
+    win.loadURL(`file://${__dirname}/game/game.html`);
+
+    // if (gameWindow.isVisible())
+    //   gameWindow.hide()
+    // else
+    //   gameWindow.show()
+  })
 }
 
 // This method will be called when Electron has finished

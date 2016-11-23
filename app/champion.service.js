@@ -50,7 +50,6 @@ let ChampionService = class ChampionService {
                 };
                 championImages.push(championImage);
             }
-            console.log(championImages);
             return championImages;
         })
             .catch(function (error) {
